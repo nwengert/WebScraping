@@ -21,7 +21,7 @@ request('https://data.mx.com/company#careers', (error, response, html) => {
     if(!error && response.statusCode == 200) {
         const i = cheerio.load(html);
 
-        console.log(`\nRED OLIVE JOB POSTINGS`)
+        console.log(`\nMX JOB POSTINGS`)
         const MXsection = i('h3');
         console.log(MXsection.text());
 
