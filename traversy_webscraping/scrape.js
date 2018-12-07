@@ -1,9 +1,13 @@
 const request = require('request')
 const cheerio = require('cheerio')
 
+
+// RED OLIVE
 request('https://www.redolive.com/jobs/', (error, response, html) => {
     if(!error && response.statusCode == 200) {
         const h = cheerio.load(html);
+
+        console.log(html)
 
         console.log(`\nRED OLIVE JOB POSTINGS`)
         const ROsectionHeading = h('h3');
@@ -16,30 +20,41 @@ request('https://www.redolive.com/jobs/', (error, response, html) => {
     }
 });
 
+//    //\\  //\\    \\  //   I GIVE UO ON MX
+//   //  \\//  \\    \\//
+//  //    \/    \\   //\\
+// //            \\ //  \\
+// request('https://data.mx.com/company#careers', (error, response, html) => {
+//     if(!error && response.statusCode == 200) {
+//         const $ = cheerio.load(html);
 
-request('https://data.mx.com/company#careers', (error, response, html) => {
-    if(!error && response.statusCode == 200) {
-        const i = cheerio.load(html);
+//         console.log(`\nMX JOB POSTINGS`)
 
-        console.log(`\nMX JOB POSTINGS`)
-        const MXsection = i('h3');
-        console.log(MXsection.text());
+//         const headline = $("company-jobs__headline").parent().attr('class')
+//         console.log(headline);   
+//         // const srJobList = i('srJobList');
+//         // console.log(srJobList.text());
 
-        i('.title').each((e, el) => {
-            const item = i(el).text();
-            console.log('\t'+item);
-        });
-    }
-});
+//         // i('.srJobListJobTitle').each((e, el) => {
+//         //     const item = i(el).text();
+//         //     console.log('\t'+item);
+//         // });
+//     }
+// });
 
-//I CANT GET ANYTHING TO WORK ON BAMBOO
+
+// BambooHR
 
 request('https://company.bamboohr.com/jobs/', (error, response, html) => {
     if(!error && response.statusCode == 200) {
         const $ = cheerio.load(html);
 
-
         console.log(`\nBambooHR JOB POSTINGS`)
+
+        const title = $('resultDiv').find('h2').text()
+
+        console.log(title)
+
         // const bambooHeading = $('.ResAts__card-content');
         // const bambooTitle = bambooHeading.find('h2').text();
         // console.log('?'+bambooTitle);
